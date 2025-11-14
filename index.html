@@ -3,85 +3,120 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Emergency Report</title>
+  <title>Near Miss Report</title>
   <style>
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;margin:0;background:#f5f7fb;color:#111}
-    .wrap{max-width:700px;margin:28px auto;padding:20px;background:#fff;border-radius:10px;box-shadow:0 6px 20px rgba(12,20,40,0.06)}
-    h1{font-size:20px;margin:0 0 8px}
-    p.lead{margin:0 0 16px;color:#555}
+    :root{--bg:#f5f7fb;--card:#fff;--accent:#0b61ff;--muted:#666}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;margin:0;background:var(--bg);color:#111}
+    .wrap{max-width:760px;margin:26px auto;padding:20px;background:var(--card);border-radius:10px;box-shadow:0 8px 30px rgba(12,20,40,0.06)}
+    h1{font-size:20px;margin:0 0 6px}
+    p.lead{margin:0 0 16px;color:var(--muted)}
     label{display:block;margin-top:12px;font-weight:600;font-size:13px}
-    input[type=text], textarea, select {width:100%;padding:10px;border:1px solid #dfe6ef;border-radius:8px;margin-top:6px;font-size:14px}
+    input[type=text], input[type=time], input[type=date], textarea, select {width:100%;padding:10px;border:1px solid #dfe6ef;border-radius:8px;margin-top:6px;font-size:14px}
     textarea{min-height:120px;resize:vertical}
     .row{display:flex;gap:12px}
     .row > *{flex:1}
-    .small{font-size:12px;color:#666;margin-top:6px}
+    .small{font-size:12px;color:var(--muted);margin-top:6px}
     .actions{display:flex;gap:12px;align-items:center;margin-top:18px}
-    button{background:#0b61ff;color:white;border:0;padding:12px 16px;border-radius:10px;font-weight:700;cursor:pointer}
-    .secondary{background:#f0f4ff;color:#0b61ff;border:1px solid #dbe9ff}
-    .note{font-size:12px;color:#777;margin-top:12px}
+    button{background:var(--accent);color:white;border:0;padding:12px 16px;border-radius:10px;font-weight:700;cursor:pointer}
+    .secondary{background:#f0f4ff;color:var(--accent);border:1px solid #dbe9ff}
+    fieldset{border:1px solid #e6eef8;padding:12px;border-radius:8px;margin-top:10px}
+    legend{font-weight:700;padding:0 6px}
+    .checkbox-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin-top:8px}
+    .note{font-size:12px;color:var(--muted);margin-top:12px}
     @media (max-width:520px){.wrap{margin:12px;padding:14px}}
   </style>
 </head>
 <body>
   <main class="wrap" role="main">
-    <h1>Emergency Report</h1>
-    <p class="lead">Quickly report an incident. Submissions are sent to TKigera@ccbagroup.com.</p>
+    <h1>Near Miss Reporting Form</h1>
+    <p class="lead">Please report any near-miss incident — information is forwarded to TKigera@ccbagroup.com.</p>
 
-    <!-- CHANGE the action email only if you want a different recipient -->
-    <form id="reportForm" action="https://formsubmit.co/TKigera@ccbagroup.com" method="POST" enctype="multipart/form-data" accept-charset="utf-8">
-      <!-- FormSubmit hidden controls -->
-      <input type="hidden" name="_subject" value="New Emergency Report">
-      <!-- Redirect to a thank-you page or show inline message with JS -->
+    <form id="nearMissForm" action="https://formsubmit.co/TKigera@ccbagroup.com" method="POST" enctype="multipart/form-data" accept-charset="utf-8">
+      <!-- FormSubmit controls -->
+      <input type="hidden" name="_subject" value="Near Miss Report">
       <input type="hidden" name="_next" value="">
-      <!-- Disable captcha (FormSubmit may still require verification on first-time use) -->
       <input type="hidden" name="_captcha" value="false">
 
-      <label for="name">Name (optional)</label>
-      <input id="name" name="Name" type="text" placeholder="Reporter name">
+      <label for="date">Date of Near Miss</label>
+      <input id="date" name="Date" type="date" required>
 
-      <label for="location">Location</label>
-      <input id="location" name="Location" type="text" placeholder="Where is the incident? (address, building, etc)" required>
+      <div class="row">
+        <div>
+          <label for="time">Time of Near Miss</label>
+          <input id="time" name="Time" type="time" required>
+        </div>
+        <div>
+          <label for="location">Location</label>
+          <input id="location" name="Location" type="text" placeholder="Address, building, area..." required>
+        </div>
+      </div>
 
-      <label for="type">Type of emergency</label>
-      <select id="type" name="Type" required>
-        <option value="">— Select —</option>
-        <option>Fire</option>
-        <option>Medical</option>
-        <option>Security</option>
-        <option>Spill / Hazard</option>
-        <option>Other</option>
-      </select>
+      <fieldset>
+        <legend>Select category (choose any that apply)</legend>
+        <div class="checkbox-grid">
+          <label><input type="checkbox" name="Category" value="Fall from height"> Fall from height</label>
+          <label><input type="checkbox" name="Category" value="Trip / fall on same level"> Trip / fall on same level</label>
+          <label><input type="checkbox" name="Category" value="Fall from equipment"> Fall from equipment</label>
+          <label><input type="checkbox" name="Category" value="Hazardous Manual Handling"> Hazardous Manual Handling</label>
+          <label><input type="checkbox" name="Category" value="Electric Shock"> Electric Shock</label>
+          <label><input type="checkbox" name="Category" value="Caught between/underneath"> Caught between/ underneath</label>
+          <label><input type="checkbox" name="Category" value="Hazardous Substance"> Hazardous Substance</label>
+          <label><input type="checkbox" name="Category" value="Falling object"> Falling object</label>
+          <label><input type="checkbox" name="Category" value="Other"> Other (specify below)</label>
+        </div>
+      </fieldset>
 
-      <label for="description">Description</label>
-      <textarea id="description" name="Description" placeholder="Describe what happened" required></textarea>
+      <label for="othercat">If 'Other', please specify</label>
+      <input id="othercat" name="Other Category" type="text" placeholder="If you selected Other, describe here">
 
-      <label for="photo">Attach photo (optional)</label>
-      <input id="photo" name="Photo" type="file" accept="image/*">
+      <label for="describe">Describe how the Near Miss occurred</label>
+      <textarea id="describe" name="Describe" placeholder="Describe the sequence of events" required></textarea>
 
-      <!-- timestamp will be filled automatically -->
+      <label for="causes">What led up to and caused the Near Miss</label>
+      <textarea id="causes" name="Causes" placeholder="Root causes and contributing factors" required></textarea>
+
+      <label for="photos">Photo(s) that help explain the what/where/why (optional)</label>
+      <input id="photos" name="Photos" type="file" accept="image/*" multiple>
+
+      <label for="suggest">Safety suggestions to prevent repeat</label>
+      <textarea id="suggest" name="Suggestions" placeholder="What could prevent this in future"></textarea>
+
+      <div class="row">
+        <div>
+          <label for="reporter">Name (optional)</label>
+          <input id="reporter" name="Reporter Name" type="text" placeholder="Your name (optional)">
+        </div>
+        <div>
+          <label for="signature">Signature (optional)</label>
+          <input id="signature" name="Signature" type="text" placeholder="Type full name to sign">
+        </div>
+      </div>
+
+      <!-- Hidden timestamp -->
       <input type="hidden" id="ts" name="Timestamp" value="">
 
       <div class="actions">
         <button type="submit">Submit Report</button>
-        <button type="button" class="secondary" id="geoBtn">Add my location</button>
+        <button type="button" class="secondary" id="geoBtn">Add my GPS location</button>
       </div>
 
-      <p class="note">After first-time activation FormSubmit will send a verification to the recipient inbox — please confirm the link in that email to start receiving reports.</p>
+      <p class="note">Note: First submission triggers a verification email from FormSubmit to TKigera@ccbagroup.com — please click the verification link in Outlook to start receiving reports.</p>
       <div id="status" class="small" aria-live="polite"></div>
     </form>
   </main>
 
   <script>
     (function(){
-      const form = document.getElementById('reportForm');
+      const form = document.getElementById('nearMissForm');
       const tsInput = document.getElementById('ts');
       const status = document.getElementById('status');
-      const nextUrl = window.location.href + '?thankyou=1'; // fallback _next if you host
-      // Put current timestamp
+      const nextUrl = window.location.href + '?thankyou=1';
+
+      // set timestamp ISO
       function setTimestamp(){ tsInput.value = new Date().toISOString(); }
       setTimestamp();
 
-      // Add optional geolocation into the Location field
+      // geo location button
       const geoBtn = document.getElementById('geoBtn');
       geoBtn.addEventListener('click', () => {
         if (!navigator.geolocation) {
@@ -99,18 +134,16 @@
         }, {timeout:10000});
       });
 
-      // When form submits, set _next to a simple thank-you URL if not replaced
+      // on submit update timestamp and set _next
       form.addEventListener('submit', () => {
-        // ensure timestamp is up-to-date at moment of submit
         setTimestamp();
-        // set _next to keep user on a small thank-you message (replace with your hosted page if desired)
         const nextField = form.querySelector('input[name="_next"]');
         nextField.value = nextField.value || nextUrl;
       });
 
-      // If page landing with ?thankyou=1 show a small inline message
+      // thank you message if redirected
       if (new URLSearchParams(window.location.search).get('thankyou')) {
-        document.body.innerHTML = '<main class="wrap"><h1>Thanks — report submitted</h1><p class="lead">Your report was received. If this is an emergency, call local services immediately.</p></main>';
+        document.body.innerHTML = '<main class="wrap"><h1>Thanks — report submitted</h1><p class="lead">Your near-miss report was received. If this is an immediate emergency, please contact local services now.</p></main>';
       }
     })();
   </script>
