@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Near Miss Report</title>
+<title>CCBA Near Miss Reporting</title>
 
 <style>
 :root{
@@ -14,9 +14,9 @@
 }
 body{
   margin:0;
-  background:var(--bg);
   font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
   color:#111;
+  background:var(--bg);
 }
 .wrap{
   max-width:760px;
@@ -103,17 +103,46 @@ button{
 .small{font-size:13px;color:var(--muted);margin-top:8px}
 .note{font-size:13px;color:var(--muted);margin-top:14px}
 .qr-code{margin:16px 0; text-align:center;}
-@media(max-width:500px){
-  .row{flex-direction:column}
+
+/* Poster styling */
+.poster {
+  width:210mm;
+  height:297mm;
+  padding:20mm;
+  box-sizing:border-box;
+  text-align:center;
+  border:4px solid var(--accent);
+  margin:40px auto;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
 }
+.poster h1{
+  font-size:36px;
+  color:var(--accent);
+  margin:10px 0;
+}
+.poster .instructions{
+  font-size:16px;
+  margin-top:20px;
+  line-height:1.4;
+}
+.poster .footer{
+  font-size:14px;
+  color:#555;
+  margin-top:20px;
+}
+.poster img{max-width:60%; margin:0 auto 20px;}
+@media(max-width:500px){.row{flex-direction:column}}
 </style>
 </head>
 <body>
+
 <main class="wrap">
 
-  <!-- Embedded QR code -->
+  <!-- QR code at top -->
   <div class="qr-code">
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAABM0lEQVR4nO3PMQ0AAAjDMO5fNNEdiQCjz9JauWWmHkQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAIEgFhXk0k+2MwnAAAAAElFTkSuQmCC" alt="Scan to open Near Miss Form">
+    <img src="https://chart.googleapis.com/chart?chs=400x400&cht=qr&chl=https%3A%2F%2Fcorinthian-the.github.io%2FQr%2Fnearmiss.html" alt="Scan QR to open Near Miss Form">
     <p>Scan to open the Near Miss Form</p>
   </div>
 
@@ -204,8 +233,29 @@ button{
     <div id="status" class="small"></div>
     <p class="note">Report will be emailed to TKigera@ccbagroup.com and stored in Google Sheets.</p>
   </form>
-
 </main>
+
+<!-- Printable Poster Section -->
+<div class="poster">
+  <div class="logo">
+    <img src="c986c334-c924-4544-984c-d3f4c1adb826.png" alt="CCBA Logo">
+  </div>
+  <div>
+    <h1>Report a Near Miss</h1>
+    <p>Help us keep our workplace safe — your report matters!</p>
+    <div class="qr">
+      <img src="https://chart.googleapis.com/chart?chs=400x400&cht=qr&chl=https%3A%2F%2Fcorinthian-the.github.io%2FQr%2Fnearmiss.html" alt="Scan QR to Report">
+    </div>
+    <div class="instructions">
+      1️⃣ Open your camera and scan the QR code<br>
+      2️⃣ Fill out the Near Miss Reporting Form<br>
+      3️⃣ Click submit to send your report to the Safety Team
+    </div>
+  </div>
+  <div class="footer">
+    Near Miss Reporting Form | CCBA Safety Team | Effective: 2024-07-16
+  </div>
+</div>
 
 <script>
 (function(){
