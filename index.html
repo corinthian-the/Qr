@@ -113,7 +113,7 @@ button{
 
   <!-- Embedded QR code -->
   <div class="qr-code">
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAABM0lEQVR4nO3PMQ0AAAjDMO5fNNEdiQCjz9JauWWmHkQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAIEgFhXk0k+2MwnAAAAAElFTkSuQmCC" alt="Scan to open Near Miss Form">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAABM0lEQVR4nO3PMQ0AAAjDMO5fNNEdiQCjz9JauWWmHkQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAIEgFhXk0k+2MwnAAAAAElFTkSuQmCC" alt="Scan to open Near Miss Form">
     <p>Scan to open the Near Miss Form</p>
   </div>
 
@@ -139,11 +139,9 @@ button{
   </div>
 
   <!-- Form -->
-  <form id="nearMissForm" action="https://formsubmit.co/TKigera@ccbagroup.com" method="POST" enctype="multipart/form-data">
-    <input type="hidden" name="_subject" value="Near Miss Report">
-    <input type="hidden" name="_captcha" value="false">
+  <form id="nearMissForm">
     <input type="hidden" id="ts" name="Timestamp" value="">
-    
+
     <label>Date of Near Miss</label>
     <input type="date" name="Date" required>
 
@@ -204,7 +202,7 @@ button{
       <button type="button" class="secondary" id="geoBtn">Add GPS Location</button>
     </div>
     <div id="status" class="small"></div>
-    <p class="note">First submission will send an email to TKigera@ccbagroup.com and store data in Google Sheets.</p>
+    <p class="note">Report will be emailed to TKigera@ccbagroup.com and stored in Google Sheets.</p>
   </form>
 
 </main>
@@ -215,9 +213,7 @@ button{
   const status=document.getElementById('status');
   const form=document.getElementById('nearMissForm');
 
-  function setTimestamp(){
-    tsInput.value=new Date().toISOString();
-  }
+  function setTimestamp(){ tsInput.value=new Date().toISOString(); }
   setTimestamp();
 
   // GPS capture
@@ -233,6 +229,55 @@ button{
     },()=>{status.textContent="GPS access denied."});
   };
 
+  // Submit to Google Sheets + email
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    setTimestamp();
+
+    const formData = new FormData(form);
+    const obj = {};
+    formData.forEach((value,key)=>{
+      if(obj[key]){
+        if(Array.isArray(obj[key])) obj[key].push(value);
+        else obj[key]=[obj[key], value];
+      } else obj[key]=value;
+    });
+
+    // 1️⃣ Submit to Google Sheet
+    fetch("https://script.google.com/macros/s/AKfycby1mxFl5ILuBwz0U5ialMGYX-Fjg6U9U0vvnVSvqQQYhy4YUgZbNir44Ij2Du8lsSk/exec", {
+      method:'POST',
+      body: JSON.stringify(obj),
+      headers: {'Content-Type':'application/json'}
+    })
+    .then(res=>res.json())
+    .then(res=>{
+      if(res.result!=="success") alert("Google Sheets Error: "+res.message);
+    })
+    .catch(err=>alert("Google Sheets Error: "+err));
+
+    // 2️⃣ Send email via FormSubmit
+    const emailForm = new FormData();
+    for(const [k,v] of formData.entries()) emailForm.append(k,v);
+    emailForm.append("_subject","Near Miss Report");
+    emailForm.append("_captcha","false");
+    emailForm.append("_next",window.location.href+"?thankyou=1");
+
+    fetch("https://formsubmit.co/ajax/TKigera@ccbagroup.com", {
+      method:"POST",
+      body: emailForm
+    }).then(r=>r.json())
+      .then(r=>{ if(r.success) window.location.href=window.location.href+"?thankyou=1"; })
+      .catch(err=>alert("Email Error: "+err));
+  });
+
+  // Thank you page
+  if(new URLSearchParams(window.location.search).get("thankyou")){
+    document.body.innerHTML = `
+      <main class="wrap">
+        <h1>Thank you — Report Submitted</h1>
+        <p>Your near-miss report has been received. Safety team will review it shortly.</p>
+      </main>`;
+  }
 })();
 </script>
 </body>
