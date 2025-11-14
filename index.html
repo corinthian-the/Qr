@@ -115,9 +115,9 @@ button{
 <body>
 <main class="wrap">
 
-  <!-- QR code -->
+  <!-- QR code embedded as Base64 -->
   <div class="qr-code">
-    <img src="https://chart.googleapis.com/chart?chs=400x400&cht=qr&chl=https%3A%2F%2Fcorinthian-the.github.io%2FQr%2Fnearmiss.html" alt="Scan QR to open Near Miss Form">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAAGQCAYAAACGkZ3dAAAACXBIWXMAAAsTAAALEwEAmpwYAA..." alt="Scan QR to open Near Miss Form">
     <p>Scan to open the Near Miss Form</p>
   </div>
 
@@ -135,10 +135,8 @@ button{
     Status: <strong>Published</strong><br>
     Effective Date: <strong>2024-07-16</strong><br>
     Page: <strong>1 of 1</strong><br><br>
-
     A near miss is defined as an unplanned event that did not result in injury, illness, or damage,
     but had the potential to do so.<br><br>
-
     Everyone is responsible for reporting and correcting potential hazards immediately.
   </div>
 
@@ -241,7 +239,8 @@ button{
         else obj[key]=[obj[key], value];
       } else obj[key]=value;
     });
-    // Submit to Google Sheets
+
+    // Google Sheets submission
     fetch("https://script.google.com/macros/s/AKfycby1mxFl5ILuBwz0U5ialMGYX-Fjg6U9U0vvnVSvqQQYhy4YUgZbNir44Ij2Du8lsSk/exec", {
       method:'POST', body: JSON.stringify(obj), headers: {'Content-Type':'application/json'}
     }).then(res=>res.json()).then(res=>{
