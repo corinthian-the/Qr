@@ -1,223 +1,213 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Near Miss Report</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Near Miss Report</title>
 
-  <style>
-    :root{
-      --bg:#f5f7fb;
-      --card:#fff;
-      --accent:#d00000; /* Coca-Cola red */
-      --muted:#555;
-    }
-    body{
-      margin:0;
-      background:var(--bg);
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
-      color:#111;
-    }
-    .wrap{
-      max-width:760px;
-      margin:20px auto;
-      background:var(--card);
-      padding:20px;
-      border-radius:10px;
-      box-shadow:0 8px 30px rgba(12,20,40,0.06);
-    }
-    .logo-box{
-      width:100%;
-      text-align:center;
-      padding-bottom:12px;
-      border-bottom:3px solid #e5e5e5;
-      margin-bottom:16px;
-    }
-    .logo-box img{
-      width:100%;
-      max-width:380px;
-      height:auto;
-    }
-    h1{font-size:22px;margin:6px 0 8px}
-    .info-block{
-      background:#fafafa;
-      border-left:4px solid var(--accent);
-      padding:12px;
-      font-size:14px;
-      margin-bottom:18px;
-      line-height:1.45;
-    }
-    label{
-      font-weight:600;
-      font-size:14px;
-      margin-top:14px;
-      display:block;
-    }
-    input[type=text],
-    input[type=time],
-    input[type=date],
-    textarea,
-    select{
-      width:100%;
-      padding:10px;
-      border-radius:8px;
-      border:1px solid #dfe6ef;
-      margin-top:6px;
-      font-size:14px;
-    }
-    textarea{min-height:120px;resize:vertical}
-    .row{display:flex;gap:12px}
-    .row>*{flex:1}
-    fieldset{
-      border:1px solid #e6eef8;
-      border-radius:8px;
-      padding:12px;
-      margin-top:14px;
-    }
-    legend{font-weight:700;padding:0 4px}
-    .checkbox-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-      gap:8px;
-      margin-top:8px;
-      font-size:14px;
-    }
-    button{
-      cursor:pointer;
-      border:none;
-      border-radius:10px;
-      padding:12px 16px;
-      font-size:15px;
-      font-weight:700;
-    }
-    .submit-btn{
-      background:var(--accent);
-      color:white;
-    }
-    .secondary{
-      background:#f0f4ff;
-      color:#004aad;
-      border:1px solid #bcd4ff;
-    }
-    .actions{display:flex;gap:12px;margin-top:20px}
-    .small{font-size:13px;color:var(--muted);margin-top:8px}
-    .note{font-size:13px;color:var(--muted);margin-top:14px}
-    .qr-code{margin:16px 0; text-align:center;}
-    @media(max-width:500px){
-      .row{flex-direction:column}
-    }
-  </style>
+<style>
+:root{
+  --bg:#f5f7fb;
+  --card:#fff;
+  --accent:#d00000;
+  --muted:#555;
+}
+body{
+  margin:0;
+  background:var(--bg);
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+  color:#111;
+}
+.wrap{
+  max-width:760px;
+  margin:20px auto;
+  background:var(--card);
+  padding:20px;
+  border-radius:10px;
+  box-shadow:0 8px 30px rgba(12,20,40,0.06);
+}
+.logo-box{
+  width:100%;
+  text-align:center;
+  padding-bottom:12px;
+  border-bottom:3px solid #e5e5e5;
+  margin-bottom:16px;
+}
+.logo-box img{
+  width:100%;
+  max-width:380px;
+  height:auto;
+}
+h1{font-size:22px;margin:6px 0 8px}
+.info-block{
+  background:#fafafa;
+  border-left:4px solid var(--accent);
+  padding:12px;
+  font-size:14px;
+  margin-bottom:18px;
+  line-height:1.45;
+}
+label{
+  font-weight:600;
+  font-size:14px;
+  margin-top:14px;
+  display:block;
+}
+input[type=text],
+input[type=time],
+input[type=date],
+textarea,
+select{
+  width:100%;
+  padding:10px;
+  border-radius:8px;
+  border:1px solid #dfe6ef;
+  margin-top:6px;
+  font-size:14px;
+}
+textarea{min-height:120px;resize:vertical}
+.row{display:flex;gap:12px}
+.row>*{flex:1}
+fieldset{
+  border:1px solid #e6eef8;
+  border-radius:8px;
+  padding:12px;
+  margin-top:14px;
+}
+legend{font-weight:700;padding:0 4px}
+.checkbox-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:8px;
+  margin-top:8px;
+  font-size:14px;
+}
+button{
+  cursor:pointer;
+  border:none;
+  border-radius:10px;
+  padding:12px 16px;
+  font-size:15px;
+  font-weight:700;
+}
+.submit-btn{
+  background:var(--accent);
+  color:white;
+}
+.secondary{
+  background:#f0f4ff;
+  color:#004aad;
+  border:1px solid #bcd4ff;
+}
+.actions{display:flex;gap:12px;margin-top:20px}
+.small{font-size:13px;color:var(--muted);margin-top:8px}
+.note{font-size:13px;color:var(--muted);margin-top:14px}
+.qr-code{margin:16px 0; text-align:center;}
+@media(max-width:500px){
+  .row{flex-direction:column}
+}
+</style>
 </head>
-
 <body>
-  <main class="wrap">
+<main class="wrap">
 
-    <!-- QR code -->
-    <div class="qr-code">
-      <img src="https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=https%3A%2F%2Fcorinthian-the.github.io%2FQr%2Fnearmiss.html" alt="Scan to open Near Miss Form">
-      <p>Scan to open the Near Miss Form</p>
+  <!-- QR code -->
+  <div class="qr-code">
+    <img src="https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=https%3A%2F%2Fcorinthian-the.github.io%2FQr%2Fnearmiss.html" alt="Scan to open Near Miss Form">
+    <p>Scan to open the Near Miss Form</p>
+  </div>
+
+  <!-- Logo -->
+  <div class="logo-box">
+    <img src="c986c334-c924-4544-984c-d3f4c1adb826.png" alt="CCBA Logo">
+  </div>
+
+  <!-- Document info -->
+  <div class="info-block">
+    <strong>Near Miss Reporting Form</strong><br>
+    Number: <strong>DOC.F.3746</strong><br>
+    Doc Owner: <strong>Teresia Kigera</strong><br>
+    Revision: <strong>0</strong><br>
+    Status: <strong>Published</strong><br>
+    Effective Date: <strong>2024-07-16</strong><br>
+    Page: <strong>1 of 1</strong><br><br>
+
+    A near miss is defined as an unplanned event that did not result in injury, illness, or damage,
+    but had the potential to do so.<br><br>
+
+    Examples include tripping over an unmarked step, a projectile striking safety glasses, using faulty equipment, or not following proper procedures.<br><br>
+
+    Everyone is responsible for reporting and correcting potential hazards immediately.
+  </div>
+
+  <form id="nearMissForm">
+
+    <input type="hidden" id="ts" name="Timestamp" value="">
+
+    <label>Date of Near Miss</label>
+    <input type="date" name="Date" required>
+
+    <div class="row">
+      <div>
+        <label>Time of Near Miss</label>
+        <input type="time" name="Time" required>
+      </div>
+      <div>
+        <label>Location of Near Miss</label>
+        <input type="text" name="Location" placeholder="Address / Area / Site" required>
+      </div>
     </div>
 
-    <!-- Full-width logo header -->
-    <div class="logo-box">
-      <img src="c986c334-c924-4544-984c-d3f4c1adb826.png" alt="CCBA Logo">
+    <fieldset>
+      <legend>Category (Select all that apply)</legend>
+      <div class="checkbox-grid">
+        <label><input type="checkbox" name="Category" value="Fall from height"> Fall from height</label>
+        <label><input type="checkbox" name="Category" value="Trip/Fall same level"> Trip / fall on same level</label>
+        <label><input type="checkbox" name="Category" value="Fall from equipment"> Fall from equipment</label>
+        <label><input type="checkbox" name="Category" value="Hazardous Manual Handling"> Hazardous Manual Handling</label>
+        <label><input type="checkbox" name="Category" value="Electric Shock"> Electric Shock</label>
+        <label><input type="checkbox" name="Category" value="Caught between/underneath"> Caught between/underneath</label>
+        <label><input type="checkbox" name="Category" value="Hazardous Substance"> Hazardous Substance</label>
+        <label><input type="checkbox" name="Category" value="Falling object"> Falling object</label>
+        <label><input type="checkbox" name="Category" value="Other"> Other (specify below)</label>
+      </div>
+    </fieldset>
+
+    <label>If 'Other', specify</label>
+    <input type="text" name="Other Category">
+
+    <label>Describe how the Near Miss occurred</label>
+    <textarea name="Description" required></textarea>
+
+    <label>Describe what led up to and caused the Near Miss</label>
+    <textarea name="Causes" required></textarea>
+
+    <label>Photo(s) (optional)</label>
+    <input type="file" name="Photos" multiple accept="image/*">
+
+    <label>Safety suggestions to prevent recurrence</label>
+    <textarea name="Suggestions"></textarea>
+
+    <div class="row">
+      <div>
+        <label>Name (optional)</label>
+        <input type="text" name="Reporter Name">
+      </div>
+      <div>
+        <label>Signature (optional)</label>
+        <input type="text" name="Signature">
+      </div>
     </div>
 
-    <!-- Document information -->
-    <div class="info-block">
-      <strong>Near Miss Reporting Form</strong><br>
-      Number: <strong>DOC.F.3746</strong><br>
-      Doc Owner: <strong>Teresia Kigera</strong><br>
-      Revision: <strong>0</strong><br>
-      Status: <strong>Published</strong><br>
-      Effective Date: <strong>2024-07-16</strong><br>
-      Page: <strong>1 of 1</strong><br><br>
-
-      A near miss is defined as an unplanned event that did not result in injury, illness, or damage,
-      but had the potential to do so.<br><br>
-
-      Examples include tripping over an unmarked step without injury, a projectile striking safety
-      glasses, using faulty equipment, or not following proper procedures.<br><br>
-
-      It is everyone’s responsibility to report and correct potential hazards immediately to prevent
-      future incidents and ensure a safe workplace.
+    <div class="actions">
+      <button class="submit-btn" type="submit">Submit Near Miss Report</button>
+      <button type="button" class="secondary" id="geoBtn">Add GPS Location</button>
     </div>
 
-    <form id="nearMissForm"
-          action="YOUR_GOOGLE_SHEETS_WEB_APP_URL_HERE"
-          method="POST"
-          enctype="multipart/form-data"
-          accept-charset="utf-8">
-
-      <input type="hidden" name="_subject" value="Near Miss Report">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_next" value="">
-      <input type="hidden" id="ts" name="Timestamp" value="">
-
-      <label>Date of Near Miss</label>
-      <input type="date" name="Date" required>
-
-      <div class="row">
-        <div>
-          <label>Time of Near Miss</label>
-          <input type="time" name="Time" required>
-        </div>
-        <div>
-          <label>Location of Near Miss</label>
-          <input type="text" name="Location" placeholder="Address / Area / Site" required>
-        </div>
-      </div>
-
-      <fieldset>
-        <legend>Category (Select all that apply)</legend>
-        <div class="checkbox-grid">
-          <label><input type="checkbox" name="Category" value="Fall from height"> Fall from height</label>
-          <label><input type="checkbox" name="Category" value="Trip/Fall same level"> Trip / fall on same level</label>
-          <label><input type="checkbox" name="Category" value="Fall from equipment"> Fall from equipment</label>
-          <label><input type="checkbox" name="Category" value="Hazardous Manual Handling"> Hazardous Manual Handling</label>
-          <label><input type="checkbox" name="Category" value="Electric Shock"> Electric Shock</label>
-          <label><input type="checkbox" name="Category" value="Caught between/underneath"> Caught between/underneath</label>
-          <label><input type="checkbox" name="Category" value="Hazardous Substance"> Hazardous Substance</label>
-          <label><input type="checkbox" name="Category" value="Falling object"> Falling object</label>
-          <label><input type="checkbox" name="Category" value="Other"> Other (specify below)</label>
-        </div>
-      </fieldset>
-
-      <label>If 'Other', specify</label>
-      <input type="text" name="Other Category">
-
-      <label>Describe how the Near Miss occurred</label>
-      <textarea name="Description" required></textarea>
-
-      <label>Describe what led up to and caused the Near Miss</label>
-      <textarea name="Causes" required></textarea>
-
-      <label>Photo(s) (optional)</label>
-      <input type="file" name="Photos" multiple accept="image/*">
-
-      <label>Safety suggestions to prevent recurrence</label>
-      <textarea name="Suggestions"></textarea>
-
-      <div class="row">
-        <div>
-          <label>Name (optional)</label>
-          <input type="text" name="Reporter Name">
-        </div>
-        <div>
-          <label>Signature (optional)</label>
-          <input type="text" name="Signature">
-        </div>
-      </div>
-
-      <div class="actions">
-        <button class="submit-btn" type="submit">Submit Near Miss Report</button>
-        <button type="button" class="secondary" id="geoBtn">Add GPS Location</button>
-      </div>
-
-      <div id="status" class="small"></div>
-      <p class="note">First submission may require verification to activate reporting.</p>
-    </form>
-  </main>
+    <div id="status" class="small"></div>
+    <p class="note">First submission may require verification to activate reporting.</p>
+  </form>
+</main>
 
 <script>
 (function(){
@@ -231,12 +221,9 @@
   }
   setTimestamp();
 
-  // GPS button
+  // GPS
   document.getElementById('geoBtn').onclick=function(){
-    if(!navigator.geolocation){
-      status.textContent="GPS not supported.";
-      return;
-    }
+    if(!navigator.geolocation){status.textContent="GPS not supported."; return;}
     status.textContent="Requesting GPS...";
     navigator.geolocation.getCurrentPosition((pos)=>{
       const lat=pos.coords.latitude.toFixed(6);
@@ -244,14 +231,34 @@
       const loc=form.querySelector("input[name='Location']");
       loc.value += (loc.value ? " — " : "") + `Lat:${lat}, Lon:${lon}`;
       status.textContent="GPS added.";
-    },()=>{
-      status.textContent="GPS access denied.";
-    });
+    },()=>{status.textContent="GPS access denied."});
   };
 
-  form.addEventListener("submit",()=>{
+  // Submit to Google Sheets via JSON
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
     setTimestamp();
-    form.querySelector("input[name='_next']").value=nextUrl;
+
+    const formData = new FormData(form);
+    const obj = {};
+    formData.forEach((value,key)=>{
+      if(obj[key]){
+        if(Array.isArray(obj[key])) obj[key].push(value);
+        else obj[key] = [obj[key], value];
+      } else obj[key] = value;
+    });
+
+    fetch("https://script.google.com/macros/s/AKfycby1mxFl5ILuBwz0U5ialMGYX-Fjg6U9U0vvnVSvqQQYhy4YUgZbNir44Ij2Du8lsSk/exec", {
+      method:'POST',
+      body: JSON.stringify(obj),
+      headers: {'Content-Type':'application/json'}
+    })
+    .then(res=>res.json())
+    .then(res=>{
+      if(res.result==="success") window.location.href = nextUrl;
+      else alert("Error submitting: "+res.message);
+    })
+    .catch(err=>alert("Error submitting: "+err));
   });
 
   if(new URLSearchParams(window.location.search).get("thankyou")){
@@ -261,8 +268,8 @@
         <p class="lead">Your near-miss report has been received. Safety team will review it shortly.</p>
       </main>`;
   }
+
 })();
 </script>
-
 </body>
 </html>
