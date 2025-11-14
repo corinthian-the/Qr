@@ -102,6 +102,7 @@
     .actions{display:flex;gap:12px;margin-top:20px}
     .small{font-size:13px;color:var(--muted);margin-top:8px}
     .note{font-size:13px;color:var(--muted);margin-top:14px}
+    .qr-code{margin:16px 0; text-align:center;}
     @media(max-width:500px){
       .row{flex-direction:column}
     }
@@ -110,6 +111,12 @@
 
 <body>
   <main class="wrap">
+
+    <!-- QR code -->
+    <div class="qr-code">
+      <img src="https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=https%3A%2F%2Fcorinthian-the.github.io%2FQr%2Fnearmiss.html" alt="Scan to open Near Miss Form">
+      <p>Scan to open the Near Miss Form</p>
+    </div>
 
     <!-- Full-width logo header -->
     <div class="logo-box">
@@ -137,7 +144,7 @@
     </div>
 
     <form id="nearMissForm"
-          action="https://formsubmit.co/TKigera@ccbagroup.com"
+          action="YOUR_GOOGLE_SHEETS_WEB_APP_URL_HERE"
           method="POST"
           enctype="multipart/form-data"
           accept-charset="utf-8">
@@ -208,7 +215,7 @@
       </div>
 
       <div id="status" class="small"></div>
-      <p class="note">First submission sends a verification email to TKigera@ccbagroup.com — click it once to activate reporting.</p>
+      <p class="note">First submission may require verification to activate reporting.</p>
     </form>
   </main>
 
