@@ -123,3 +123,117 @@ button{
   </div>
 
   <!-- Document info -->
+  <div class="info-block">
+    <strong>Near Miss Reporting Form</strong><br>
+    Number: <strong>DOC.F.3746</strong><br>
+    Doc Owner: <strong>Teresia Kigera</strong><br>
+    Revision: <strong>0</strong><br>
+    Status: <strong>Published</strong><br>
+    Effective Date: <strong>2024-07-16</strong><br>
+    Page: <strong>1 of 1</strong><br><br>
+
+    A near miss is defined as an unplanned event that did not result in injury, illness, or damage,
+    but had the potential to do so.<br><br>
+
+    Everyone is responsible for reporting and correcting potential hazards immediately.
+  </div>
+
+  <!-- Form -->
+  <form id="nearMissForm" action="https://formsubmit.co/TKigera@ccbagroup.com" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="_subject" value="Near Miss Report">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" id="ts" name="Timestamp" value="">
+    
+    <label>Date of Near Miss</label>
+    <input type="date" name="Date" required>
+
+    <div class="row">
+      <div>
+        <label>Time of Near Miss</label>
+        <input type="time" name="Time" required>
+      </div>
+      <div>
+        <label>Location of Near Miss</label>
+        <input type="text" name="Location" placeholder="Address / Area / Site" required>
+      </div>
+    </div>
+
+    <fieldset>
+      <legend>Category (Select all that apply)</legend>
+      <div class="checkbox-grid">
+        <label><input type="checkbox" name="Category" value="Fall from height"> Fall from height</label>
+        <label><input type="checkbox" name="Category" value="Trip/Fall same level"> Trip / fall on same level</label>
+        <label><input type="checkbox" name="Category" value="Fall from equipment"> Fall from equipment</label>
+        <label><input type="checkbox" name="Category" value="Hazardous Manual Handling"> Hazardous Manual Handling</label>
+        <label><input type="checkbox" name="Category" value="Electric Shock"> Electric Shock</label>
+        <label><input type="checkbox" name="Category" value="Caught between/underneath"> Caught between/underneath</label>
+        <label><input type="checkbox" name="Category" value="Hazardous Substance"> Hazardous Substance</label>
+        <label><input type="checkbox" name="Category" value="Falling object"> Falling object</label>
+        <label><input type="checkbox" name="Category" value="Other"> Other (specify below)</label>
+      </div>
+    </fieldset>
+
+    <label>If 'Other', specify</label>
+    <input type="text" name="Other Category">
+
+    <label>Describe how the Near Miss occurred</label>
+    <textarea name="Description" required></textarea>
+
+    <label>Describe what led up to and caused the Near Miss</label>
+    <textarea name="Causes" required></textarea>
+
+    <label>Photo(s) (optional)</label>
+    <input type="file" name="Photos" multiple accept="image/*">
+
+    <label>Safety suggestions to prevent recurrence</label>
+    <textarea name="Suggestions"></textarea>
+
+    <div class="row">
+      <div>
+        <label>Name (optional)</label>
+        <input type="text" name="Reporter Name">
+      </div>
+      <div>
+        <label>Signature (optional)</label>
+        <input type="text" name="Signature">
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="submit-btn" type="submit">Submit Near Miss Report</button>
+      <button type="button" class="secondary" id="geoBtn">Add GPS Location</button>
+    </div>
+    <div id="status" class="small"></div>
+    <p class="note">First submission will send an email to TKigera@ccbagroup.com and store data in Google Sheets.</p>
+  </form>
+
+</main>
+
+<script>
+(function(){
+  const tsInput=document.getElementById('ts');
+  const status=document.getElementById('status');
+  const form=document.getElementById('nearMissForm');
+
+  function setTimestamp(){
+    tsInput.value=new Date().toISOString();
+  }
+  setTimestamp();
+
+  // GPS capture
+  document.getElementById('geoBtn').onclick=function(){
+    if(!navigator.geolocation){status.textContent="GPS not supported."; return;}
+    status.textContent="Requesting GPS...";
+    navigator.geolocation.getCurrentPosition((pos)=>{
+      const lat=pos.coords.latitude.toFixed(6);
+      const lon=pos.coords.longitude.toFixed(6);
+      const loc=form.querySelector("input[name='Location']");
+      loc.value += (loc.value ? " — " : "") + `Lat:${lat}, Lon:${lon}`;
+      status.textContent="GPS added.";
+    },()=>{status.textContent="GPS access denied."});
+  };
+
+})();
+</script>
+</body>
+</html>
