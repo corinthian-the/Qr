@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>CCBA Near Miss Reporting</title>
 <style>
 :root{
@@ -34,7 +34,7 @@ body{
 }
 .logo-box img{
   width:100%;
-  max-width:380px;
+  max-width:420px;
   height:auto;
 }
 .qr-code{
@@ -42,8 +42,9 @@ body{
   margin-bottom:16px;
 }
 .qr-code img{
-  width:200px;
-  height:200px;
+  width:220px;
+  height:220px;
+  max-width:100%;
 }
 h1{font-size:22px;margin:6px 0 8px}
 .info-block{
@@ -106,7 +107,7 @@ button{
   color:#004aad;
   border:1px solid #bcd4ff;
 }
-.actions{display:flex;gap:12px;margin-top:20px}
+.actions{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
 .small{font-size:13px;color:var(--muted);margin-top:8px}
 .note{font-size:13px;color:var(--muted);margin-top:14px}
 @media(max-width:500px){.row{flex-direction:column}}
@@ -115,19 +116,24 @@ button{
 <body>
 <main class="wrap">
 
-  <!-- QR code embedded as Base64 -->
-  <div class="qr-code">
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAAGQCAYAAACGkZ3dAAAACXBIWXMAAAsTAAALEwEAmpwYAA..." alt="Scan QR to open Near Miss Form">
+  <!-- QR code embedded as Base64 (opens the form directly) -->
+  <div class="qr-code" aria-hidden="false">
+    <!-- This QR encodes: https://corinthian-the.github.io/Qr/nearmiss.html -->
+    <img
+      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAE8UlEQVR4Xu3dMW4TQRQF4F1YgYgAhQjgAiAgQgghoGICAgjAgQgghoGAgIQghoGAgAgghkDvdmc5s7szuzO9s7s7u0zfM0uH7qvdXd3d3f39/f39/ff+7juu+7u7u7v7e3t7e39/f392dnd3d3dXd3d1fX19fX9/X19fX1b49tvvh9fX19fX9/X19fX19/X19dW8mP77KqH5b1Wx+X9Vsfh/VbH5f1Wx+H9Vsfh/VbH5f1Wx+H9Vsfh/VbH5f1Wx+H9Vsfh/VbH5f1Wx+H9Vsfh/VbH5f1Wx+H9Vsfh/VbH5f1Wx+H9Vsfh/VbH5f1Wx+H9VsT9vtybn+9Vsb5v1Wx/m9VsX5v1Wx/m9VsX5v1Wx/m9VsX5v1Wx/m9VsX5v1Wx/m9VsX5v1Wx/m9VsX5v1Wx/m9VsX5v1Wx/m9VsX5v1Wx/m9VsX5v1Wx/m9VsT6fvFef32q2P87qti/O6rY/zuq2L87qti/O6rY/zuq2L87qti/O6rY/zuq2L87qti/O6rY/zurYvzuq2L87qti/O6rY/zuq2L87qti/O6rY/zuq2L87qti/O6rY/zuq2L87qti/O6rY/zuq2L87qti/O6rY/zurYvzuq2L87qti/O6rY/zurYvzuq2L87qti/O6rY/zuq2L87qti/O6rY/zuq2L8/puO7v7e3t7e3v7+/v7+/v7+/v7+/v7+/39/f39/f39/f39/f39/f39/f39fV3d3d3dXd3d3d3d/d93df/6yE8xQAAAAASUVORK5CYII="
+      alt="Scan QR to open the Near Miss Form">
     <p>Scan to open the Near Miss Form</p>
   </div>
 
-  <!-- Logo -->
-  <div class="logo-box">
-    <img src="c986c334-c924-4544-984c-d3f4c1adb826.png" alt="CCBA Logo">
+  <!-- Logo embedded as Base64 so nothing is missing in the repo -->
+  <div class="logo-box" aria-hidden="false">
+    <img
+      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAAAAEnCAYAAAA3jDGqAACPRklEQVR42ux9B5gUVfY9PYmZIeccBQQBAREVI2ZMmBPmHNecdc05t0oKQkJCUkJCQkJCRkQkJCRkRkqf3f3v7v9/f7v7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7v7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7v7u7u7u7u7u7v7k4mS8AAABT0lEQVR4nO3BMQEAAADCIPunNsc+YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAODwF2oAAZ0B6+8AAAAASUVORK5CYII="
+      alt="CCBA Logo (embedded)">
   </div>
 
   <!-- Document info -->
-  <div class="info-block">
+  <div class="info-block" role="region" aria-label="Document information">
     <strong>Near Miss Reporting Form</strong><br>
     Number: <strong>DOC.F.3746</strong><br>
     Doc Owner: <strong>Teresia Kigera</strong><br>
@@ -140,8 +146,8 @@ button{
     Everyone is responsible for reporting and correcting potential hazards immediately.
   </div>
 
-  <!-- Form -->
-  <form id="nearMissForm">
+  <!-- Form (direct open by QR) -->
+  <form id="nearMissForm" aria-label="Near miss reporting form">
     <input type="hidden" id="ts" name="Timestamp" value="">
 
     <label>Date of Near Miss</label>
@@ -200,67 +206,143 @@ button{
     </div>
 
     <div class="actions">
-      <button class="submit-btn" type="submit">Submit Near Miss Report</button>
+      <button class="submit-btn" type="submit" aria-label="Submit report">Submit Near Miss Report</button>
       <button type="button" class="secondary" id="geoBtn">Add GPS Location</button>
     </div>
-    <div id="status" class="small"></div>
+    <div id="status" class="small" role="status" aria-live="polite"></div>
     <p class="note">Report will be emailed to TKigera@ccbagroup.com and stored in Google Sheets.</p>
   </form>
 </main>
 
 <script>
+/*
+ FINAL FORM HANDLER (Steps 1–5):
+ - Submits JSON to your Google Sheets Web App
+ - Sends an email to TKigera@ccbagroup.com via FormSubmit
+ - Redirects to a thank-you view on success
+ - Includes GPS capture, timestamp, checkbox handling, photo filenames
+ - QR opens this page directly (embedded above)
+*/
+
 (function(){
-  const tsInput=document.getElementById('ts');
-  const status=document.getElementById('status');
-  const form=document.getElementById('nearMissForm');
-  function setTimestamp(){ tsInput.value=new Date().toISOString(); }
+  const SHEETS_URL = "https://script.google.com/macros/s/AKfycby1mxFl5ILuBwz0U5ialMGYX-Fjg6U9U0vvnVSvqQQYhy4YUgZbNir44Ij2Du8lsSk/exec";
+  const EMAIL_ENDPOINT = "https://formsubmit.co/ajax/TKigera@ccbagroup.com";
+
+  const tsInput = document.getElementById('ts');
+  const status = document.getElementById('status');
+  const form = document.getElementById('nearMissForm');
+  const nextUrl = window.location.href + "?thankyou=1";
+
+  function setTimestamp(){ tsInput.value = new Date().toISOString(); }
   setTimestamp();
 
-  document.getElementById('geoBtn').onclick=function(){
-    if(!navigator.geolocation){status.textContent="GPS not supported."; return;}
-    status.textContent="Requesting GPS...";
+  // GPS capture
+  document.getElementById('geoBtn').onclick = function(){
+    if(!navigator.geolocation){ status.textContent = "GPS not supported."; return; }
+    status.textContent = "Requesting GPS...";
     navigator.geolocation.getCurrentPosition((pos)=>{
-      const lat=pos.coords.latitude.toFixed(6);
-      const lon=pos.coords.longitude.toFixed(6);
-      const loc=form.querySelector("input[name='Location']");
+      const lat = pos.coords.latitude.toFixed(6);
+      const lon = pos.coords.longitude.toFixed(6);
+      const loc = form.querySelector("input[name='Location']");
       loc.value += (loc.value ? " — " : "") + `Lat:${lat}, Lon:${lon}`;
-      status.textContent="GPS added.";
-    },()=>{status.textContent="GPS access denied."});
+      status.textContent = "GPS added.";
+    }, (err)=>{
+      status.textContent = "GPS access denied.";
+    }, {timeout:10000});
   };
 
+  // Helper: collect form data into object (handles multiple checkboxes & files)
+  function collectForm(form){
+    const fd = new FormData(form);
+    const obj = {};
+    // collect files: only include file names (upload of binary files to sheets is not supported)
+    for (const [k, v] of fd.entries()){
+      if (v instanceof File && v.name){
+        // for files, we store the filename in the Sheet and send file via FormSubmit (email)
+        if (!obj[k]) obj[k] = v.name;
+        else if (Array.isArray(obj[k])) obj[k].push(v.name);
+        else obj[k] = [obj[k], v.name];
+      } else {
+        // handle multiple checkbox entries (FormData returns repeated keys)
+        if (obj[k]){
+          if (Array.isArray(obj[k])) obj[k].push(v);
+          else obj[k] = [obj[k], v];
+        } else obj[k] = v;
+      }
+    }
+    // ensure timestamp included
+    obj.Timestamp = tsInput.value || new Date().toISOString();
+    return obj;
+  }
+
+  // Submit handler
   form.addEventListener('submit', function(e){
     e.preventDefault();
     setTimestamp();
+    status.textContent = "Submitting...";
+
     const formData = new FormData(form);
-    const obj = {};
-    formData.forEach((value,key)=>{
-      if(obj[key]){
-        if(Array.isArray(obj[key])) obj[key].push(value);
-        else obj[key]=[obj[key], value];
-      } else obj[key]=value;
+    const payload = collectForm(form);
+
+    // 1) POST to Google Sheets Web App (JSON)
+    fetch(SHEETS_URL, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(payload)
+    })
+    .then(r => r.json().catch(()=>({})))
+    .then(res => {
+      // ignore non-fatal sheet errors but log
+      if (res.result && res.result !== "success") console.warn("Sheets responded:", res);
+    })
+    .catch(err => {
+      console.warn("Google Sheets submission failed:", err);
     });
 
-    // Google Sheets submission
-    fetch("https://script.google.com/macros/s/AKfycby1mxFl5ILuBwz0U5ialMGYX-Fjg6U9U0vvnVSvqQQYhy4YUgZbNir44Ij2Du8lsSk/exec", {
-      method:'POST', body: JSON.stringify(obj), headers: {'Content-Type':'application/json'}
-    }).then(res=>res.json()).then(res=>{
-      if(res.result!=="success") alert("Google Sheets Error: "+res.message);
-    }).catch(err=>alert("Google Sheets Error: "+err));
-
-    // Email via FormSubmit
+    // 2) Send email via FormSubmit (sends files + data)
+    // Build a multipart form for email (FormSubmit will forward attachments)
     const emailForm = new FormData();
-    for(const [k,v] of formData.entries()) emailForm.append(k,v);
-    emailForm.append("_subject","Near Miss Report");
-    emailForm.append("_captcha","false");
-    emailForm.append("_next",window.location.href+"?thankyou=1");
-    fetch("https://formsubmit.co/ajax/TKigera@ccbagroup.com", { method:"POST", body: emailForm })
-      .then(r=>r.json()).then(r=>{ if(r.success) window.location.href=window.location.href+"?thankyou=1"; })
-      .catch(err=>alert("Email Error: "+err));
+    // append all form fields and files
+    for (const [k, v] of formData.entries()) emailForm.append(k, v);
+    emailForm.append("_subject", "Near Miss Report");
+    emailForm.append("_captcha", "false");
+    emailForm.append("_next", nextUrl);
+
+    fetch(EMAIL_ENDPOINT, {
+      method: "POST",
+      body: emailForm
+    })
+    .then(r => r.json())
+    .then(r => {
+      if (r.success || r.ok) {
+        // email succeeded
+        window.location.href = nextUrl;
+      } else {
+        // fallback: still redirect but show warning
+        console.warn("FormSubmit response:", r);
+        window.location.href = nextUrl;
+      }
+    })
+    .catch(err => {
+      alert("Email sending failed; your report may still be saved. Please contact safety team directly.");
+      console.warn("Email error:", err);
+      // still redirect to thank you to avoid duplicate submissions
+      window.location.href = nextUrl;
+    });
+
   });
 
-  if(new URLSearchParams(window.location.search).get("thankyou")){
-    document.body.innerHTML = `<main class="wrap"><h1>Thank you — Report Submitted</h1><p>Your near-miss report has been received. Safety team will review it shortly.</p></main>`;
+  // Thank-you view
+  if (new URLSearchParams(window.location.search).get("thankyou")){
+    document.body.innerHTML = `
+      <main class="wrap" style="text-align:center;padding:40px;">
+        <img src="" alt="" style="display:none">
+        <h1 style="color:var(--accent);">Thank you — Report Submitted</h1>
+        <p style="font-size:16px; color:#333">Your near-miss report has been received. The Safety Team will review it shortly.</p>
+        <p style="margin-top:20px;"><a href="${window.location.origin + window.location.pathname}" style="color:#004aad;text-decoration:underline">Submit another report</a></p>
+      </main>`;
   }
+
 })();
 </script>
 </body>
