@@ -116,16 +116,15 @@ button{
 <body>
 <main class="wrap">
 
-  <!-- Logo (uploaded file) -->
+  <!-- Logo -->
   <div class="logo-box" aria-hidden="false">
     <img src="CCBA-Logo-Horizontal-1024x295.png" alt="CCBA Logo">
   </div>
 
-  <!-- QR code (embedded as Base64, opens the form directly) -->
+  <!-- QR code -->
   <div class="qr-code" aria-hidden="false">
-    <img
-      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAE8UlEQVR4Xu3dMW4TQRQF4F1YgYgAhQjgAiAgQgghoGICAgjAgQgghoGAgIQghoGAgAgghkDvdmc5s7szuzO9s7s7u0zfM0uH7qvdXd3d3f39/f39/ff+7juu+7u7u7v7e3t7e39/f392dnd3d3dXd3d1fX19fX9/X19fX1b49tvvh9fX19fX9/X19fX19/X19dW8mP77KqH5b1Wx+X9Vsfh/VbH5f1Wx+H9Vsfh/VbH5f1Wx+H9Vsfh/VbH5f1Wx+H9Vsfh/VbH5f1Wx+H9Vsfh/VbH5f1Wx+H9Vsfh/VbH5f1Wx+H9VsT9vtybn+9Vsb5v1Wx/m9VsX5v1Wx/m9VsX5v1Wx/m9VsX5v1Wx/m9VsX5v1Wx/m9VsX5v1Wx/m9VsX5v1Wx/m9VsX5v1Wx/m9VsX5v1Wx/m9VsT6fvFef32q2P87qti/O6rY/zuq2L87qti/O6rY/zuq2L87qti/O6rY/zuq2L87qti/O6rY/zurYvzuq2L87qti/O6rY/zurYvzuq2L87qti/O6rY/zuq2L87qti/O6rY/zuq2L8/puO7v7e3t7e3v7+/v7+/v7+/v7+/v7+/39/f39/f39/f39/f39/f39/f39fV3d3d3dXd3d3d3d/d93df/6yE8xQAAAAASUVORK5CYII="
-      alt="Scan QR to open the Near Miss Form">
+    <img src="QR_code_for_mobile_English_Wikipedia.svg" 
+         alt="Scan QR to open the Near Miss Form">
     <p>Scan to open the Near Miss Form</p>
   </div>
 
@@ -284,9 +283,7 @@ button{
       body: emailForm
     })
     .then(r => r.json())
-    .then(r => {
-      window.location.href = nextUrl;
-    })
+    .then(r => { window.location.href = nextUrl; })
     .catch(err => {
       alert("Email sending failed; your report may still be saved. Please contact safety team directly.");
       window.location.href = nextUrl;
